@@ -2,3 +2,5 @@ boto3
 boto_session_manager
 pathlib_mate
 s3pathlib
+cached-property>=1.5.2; python_version < '3.8'
+dataclasses>=0.8; python_version == '3.6'
