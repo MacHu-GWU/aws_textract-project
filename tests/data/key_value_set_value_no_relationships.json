@@ -1,0 +1,46 @@
+{
+    "BlockType": "KEY_VALUE_SET",
+    "ColumnIndex": null,
+    "ColumnSpan": null,
+    "Confidence": 100.0,
+    "EntityTypes": [
+        "VALUE"
+    ],
+    "Geometry": {
+        "BoundingBox": {
+            "Height": 0.012682446278631687,
+            "Left": 0.7109214067459106,
+            "Top": 0.49965807795524597,
+            "Width": 0.07856288552284241
+        },
+        "Polygon": [
+            {
+                "X": 0.7109248042106628,
+                "Y": 0.49965807795524597
+            },
+            {
+                "X": 0.7894843220710754,
+                "Y": 0.49973469972610474
+            },
+            {
+                "X": 0.7894814014434814,
+                "Y": 0.5123405456542969
+            },
+            {
+                "X": 0.7109214067459106,
+                "Y": 0.5122635960578918
+            }
+        ]
+    },
+    "Hint": null,
+    "Id": "1fe03199-8959-4f63-849c-cfe0a667e6ff",
+    "Page": 1,
+    "PageClassification": null,
+    "Query": null,
+    "Relationships": null,
+    "RowIndex": null,
+    "RowSpan": null,
+    "SelectionStatus": null,
+    "Text": null,
+    "TextType": null
+}
