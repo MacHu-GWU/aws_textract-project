@@ -1,0 +1,4 @@
+boto3
+boto_session_manager
+pathlib_mate
+s3pathlib
