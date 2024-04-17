@@ -8,3 +8,4 @@ include *.txt
 include *.rst
 exclude *.pyc
 exclude *.pyo
+exclude aws_textract/tests/**

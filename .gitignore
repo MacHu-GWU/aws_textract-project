@@ -1,7 +1,5 @@
 # User Settings
-aws_textract_venv/
 aws_textract.egg-info/
-aws_textract-*/
 tmp/
 
 

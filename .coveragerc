@@ -2,12 +2,12 @@
 # for more info: https://coverage.readthedocs.io/en/latest/config.html
 [run]
 omit =
-    aws_textract/_version.py
-    aws_textract/cli.py
-    aws_textract/pkg/*
     aws_textract/docs/*
     aws_textract/tests/*
-    aws_textract/handlers/*
+    aws_textract/vendor/*
+    aws_textract/_version.py
+    aws_textract/cli.py
+    aws_textract/paths.py
 
 [report]
 # Regexes for lines to exclude from consideration
