@@ -15,6 +15,8 @@ def test():
     _ = api.better_boto.wait_document_text_detection_job_to_succeed
     _ = api.better_boto.wait_expense_analysis_job_to_succeed
     _ = api.better_boto.wait_for_lending_analysis_job_to_succeed
+    _ = api.res.BlockTypeEnum
+    _ = api.res.blocks_to_text
 
 
 if __name__ == "__main__":
