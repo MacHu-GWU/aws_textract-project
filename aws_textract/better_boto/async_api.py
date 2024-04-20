@@ -68,24 +68,26 @@ def _get_result(
     max_results: T.Optional[int] = None,
     all_pages: bool = True,
 ):  # pragma: no cover
-    res = None
+    final_res = None
+    next_token = None
     while True:
         kwargs = dict(JobId=job_id)
         if max_results:
             kwargs["MaxResults"] = max_results
-        r = api(
-            JobId=job_id,
-        )
+        if next_token:
+            kwargs["NextToken"] = next_token
+        res = api(**kwargs)
 
-        if res is None:
-            res = r
+        if final_res is None:
+            final_res = res
         else:
-            res.get(key, []).extend(r.get(key, []))
+            final_res.get(key, []).extend(res.get(key, []))
 
         if all_pages is False:  # immediately exit
-            return res
+            return final_res
 
-        if r.get("NextToken"):
+        next_token = res.get("NextToken")
+        if next_token:
             pass
         else:
             break
@@ -99,7 +101,7 @@ def _get_result(
 def get_document_analysis(
     textract_client: "TextractClient",
     job_id: str,
-    max_results: T.Optional[int] = None,
+    max_results: T.Optional[int] = 1000,
     all_pages: bool = True,
 ) -> "GetDocumentAnalysisResponseTypeDef":  # pragma: no cover
     """
@@ -118,7 +120,7 @@ def get_document_analysis(
 def get_document_text_detection(
     textract_client: "TextractClient",
     job_id: str,
-    max_results: T.Optional[int] = None,
+    max_results: T.Optional[int] = 1000,
     all_pages: bool = True,
 ) -> "GetDocumentTextDetectionResponseTypeDef":  # pragma: no cover
     """
@@ -137,7 +139,7 @@ def get_document_text_detection(
 def get_expense_analysis(
     textract_client: "TextractClient",
     job_id: str,
-    max_results: T.Optional[int] = None,
+    max_results: T.Optional[int] = 20,
     all_pages: bool = True,
 ) -> "GetExpenseAnalysisResponseTypeDef":  # pragma: no cover
     """
@@ -156,7 +158,7 @@ def get_expense_analysis(
 def get_lending_analysis(
     textract_client: "TextractClient",
     job_id: str,
-    max_results: T.Optional[int] = None,
+    max_results: T.Optional[int] = 30,
     all_pages: bool = True,
 ) -> "GetLendingAnalysisResponseTypeDef":  # pragma: no cover
     """

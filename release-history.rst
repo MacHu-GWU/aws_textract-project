@@ -9,10 +9,18 @@ x.y.z (Backlog)
 **Features and Improvements**
 
 - Add better integration with `amazon-textract-textractor <https://github.com/aws-samples/amazon-textract-textractor>`_
+- Add the following public API:
+    - ``aws_textract.api.res.split_blocks_by_page``
+    - ``aws_textract.api.res.merge_document_analysis_result``
+    - ``aws_textract.api.res.merge_document_text_detection_result``
+    - ``aws_textract.api.res.merge_expense_analysis_result``
+    - ``aws_textract.api.res.merge_lending_analysis_result``
 
 **Minor Improvements**
 
 **Bugfixes**
+
+- Fix a bug that the paginator does not work properly in ``get_document_analysis``, ``get_document_text_detection``, ``get_expense_analysis``, ``get_lending_analysis``.
 
 **Miscellaneous**
 
