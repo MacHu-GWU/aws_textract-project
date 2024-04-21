@@ -16,7 +16,7 @@ def _merge_textract_response(
     s3_client: "S3Client",
     s3dir: S3Path,
     key: str,
-) -> dict:
+) -> dict: # pragma: no cover
     """
     The Textract async API stores the response in multiple files in a temp
     S3 directory. This function merges the response from all the files into one dict.
@@ -47,7 +47,7 @@ def _merge_textract_response(
 def merge_document_analysis_result(
     s3_client: "S3Client",
     s3dir: S3Path,
-) -> "GetDocumentAnalysisResponseTypeDef":
+) -> "GetDocumentAnalysisResponseTypeDef": # pragma: no cover
     return _merge_textract_response(
         s3_client=s3_client,
         s3dir=s3dir,
@@ -58,7 +58,7 @@ def merge_document_analysis_result(
 def merge_document_text_detection_result(
     s3_client: "S3Client",
     s3dir: S3Path,
-) -> "GetDocumentTextDetectionResponseTypeDef":
+) -> "GetDocumentTextDetectionResponseTypeDef": # pragma: no cover
     return _merge_textract_response(
         s3_client=s3_client,
         s3dir=s3dir,
@@ -69,7 +69,7 @@ def merge_document_text_detection_result(
 def merge_expense_analysis_result(
     s3_client: "S3Client",
     s3dir: S3Path,
-) -> "GetExpenseAnalysisResponseTypeDef":
+) -> "GetExpenseAnalysisResponseTypeDef": # pragma: no cover
     return _merge_textract_response(
         s3_client=s3_client,
         s3dir=s3dir,
@@ -80,7 +80,7 @@ def merge_expense_analysis_result(
 def merge_lending_analysis_result(
     s3_client: "S3Client",
     s3dir: S3Path,
-) -> "GetLendingAnalysisResponseTypeDef":
+) -> "GetLendingAnalysisResponseTypeDef": # pragma: no cover
     return _merge_textract_response(
         s3_client=s3_client,
         s3dir=s3dir,

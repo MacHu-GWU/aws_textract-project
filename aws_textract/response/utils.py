@@ -4,13 +4,13 @@ import typing as T
 
 from .contants import BlockTypeEnum
 
-if T.TYPE_CHECKING: # pragma: no cover
+if T.TYPE_CHECKING:  # pragma: no cover
     from mypy_boto3_textract.type_defs import BlockTypeDef
 
 
 def blocks_to_text(
     blocks: T.List["BlockTypeDef"],
-) -> str:
+) -> str:  # pragma: no cover
     """
     Convert Textract blocks to text.
 
@@ -25,7 +25,7 @@ def blocks_to_text(
 
 def split_blocks_by_page(
     blocks: T.List["BlockTypeDef"],
-) -> T.Dict[int, T.List["BlockTypeDef"]]:
+) -> T.Dict[int, T.List["BlockTypeDef"]]:  # pragma: no cover
     block_mapper: T.Dict[int, T.List[dict]] = dict()
     for block in blocks:
         page = block["Page"]

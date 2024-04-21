@@ -93,9 +93,9 @@ def _get_result(
             break
 
     if "NextToken" in res:
-        del res["NextToken"]
+        del final_res["NextToken"]
 
-    return res
+    return final_res
 
 
 def get_document_analysis(
