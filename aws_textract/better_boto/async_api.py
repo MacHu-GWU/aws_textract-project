@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
 
+"""
+Human friendly version of Amazon Textract async operations.
+"""
+
 import typing as T
 import enum
+import dataclasses
 
 from ..vendor.waiter import Waiter
+from ..vendor.better_dataclasses import DataClass
+
 
 if T.TYPE_CHECKING:  # pragma: no cover
     from mypy_boto3_textract import TextractClient
@@ -28,6 +35,21 @@ def preprocess_input_output_config(
     - https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/textract/client/start_document_text_detection.html
     - https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/textract/client/start_expense_analysis.html
     - https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/textract/client/start_lending_analysis.html
+
+    Usage example::
+
+        document_location, output_config = preprocess_input_output_config(
+            input_bucket="my-input-bucket",
+            input_key="my-folder/my-document.pdf",
+            input_version=None,
+            output_bucket="my-output-bucket",
+            output_prefix="my-folder/my-document",
+        )
+        boto3.client("textract").start_text_detection(
+            DocumentLocation=document_location,
+            OutputConfig=output_config,
+            ...
+        )
 
     :param input_bucket: input document bucket
     :param input_key: input document key
@@ -68,6 +90,17 @@ def _get_result(
     max_results: T.Optional[int] = None,
     all_pages: bool = True,
 ):  # pragma: no cover
+    """
+    The Textract async API will return a JobId, then you can use the JobId to get
+    the response. Since the response usually are big, you need to use the
+    ``get_xyz()`` paginator API to get all the response. This function does the
+    pagination automatically for you.
+
+    Note that the ``get_xyz()`` API requires a valid job id, but a job id only valid for 7 days.
+    (See, https://docs.aws.amazon.com/textract/latest/dg/API_GetDocumentTextDetection.html)
+    After that, you cannot get the response from the Textract API. You should
+    consider getting the response from S3 directly.
+    """
     final_res = None
     next_token = None
     while True:
@@ -107,6 +140,11 @@ def get_document_analysis(
     """
     Get all the blocks from the document analysis job. Automatically iterate through
     all the pages if there are more than one.
+
+    :param textract_client: boto3.client("textract") object.
+    :param job_id: job id.
+    :param max_results: maximum number of results in the paginator to return.
+    :param all_pages: whether to get all pages. if False, only get the first page.
     """
     return _get_result(
         api=textract_client.get_document_analysis,
@@ -126,6 +164,11 @@ def get_document_text_detection(
     """
     Get all the blocks from the document text detection job.
     Automatically iterate through all the pages if there are more than one.
+
+    :param textract_client: boto3.client("textract") object.
+    :param job_id: job id.
+    :param max_results: maximum number of results in the paginator to return.
+    :param all_pages: whether to get all pages. if False, only get the first page.
     """
     return _get_result(
         api=textract_client.get_document_text_detection,
@@ -145,6 +188,11 @@ def get_expense_analysis(
     """
     Get all the blocks from the expense analysis job.
     Automatically iterate through all the pages if there are more than one.
+
+    :param textract_client: boto3.client("textract") object.
+    :param job_id: job id.
+    :param max_results: maximum number of results in the paginator to return.
+    :param all_pages: whether to get all pages. if False, only get the first page.
     """
     return _get_result(
         api=textract_client.get_expense_analysis,
@@ -164,6 +212,11 @@ def get_lending_analysis(
     """
     Get all the blocks from the lending analysis job.
     Automatically iterate through all the pages if there are more than one.
+
+    :param textract_client: boto3.client("textract") object.
+    :param job_id: job id.
+    :param max_results: maximum number of results in the paginator to return.
+    :param all_pages: whether to get all pages. if False, only get the first page.
     """
     return _get_result(
         api=textract_client.get_lending_analysis,
@@ -259,7 +312,7 @@ def wait_expense_analysis_job_to_succeed(
     )
 
 
-def wait_for_lending_analysis_job_to_succeed(
+def wait_lending_analysis_job_to_succeed(
     textract_client: "TextractClient",
     job_id: str,
     delays: int = 5,
@@ -276,3 +329,46 @@ def wait_for_lending_analysis_job_to_succeed(
         timeout=timeout,
         verbose=verbose,
     )
+
+
+wait_for_lending_analysis_job_to_succeed = wait_lending_analysis_job_to_succeed
+
+
+@dataclasses.dataclass
+class TextractDocumentLocation(DataClass):
+    S3Bucket: str = dataclasses.field()
+    S3ObjectName: str = dataclasses.field()
+
+
+@dataclasses.dataclass
+class TextractEvent(DataClass):
+    """
+    You can let Amazon Textract to send the status of an analysis request to
+    an Amazon Simple Notification Service (Amazon SNS) topic when using
+    Asynchronous Operations. This class represents the payload of the SNS message.
+
+    Usage example::
+
+        import json
+
+        def lambda_handler(event, context):
+            message = event["Records"][0]["Sns"]["Message"]
+            textract_event = TextractEvent.from_dict(json.loads(message))
+
+    See more details about the textract SNS message at
+    https://docs.aws.amazon.com/textract/latest/dg/async-notification-payload.html.
+    The most important field is the ``JobTag``. You can use ``JobTag`` to pass
+    data via the SNS notification. If the data is a short string, you can use
+    ``JobTag``. If the data is a large object, you can use an S3 object or DynamoDB
+    to store the data and pass the URI via ``JobTag``.
+
+    See more details about the SNS event JSON at
+    https://docs.aws.amazon.com/sns/latest/dg/sns-message-and-json-formats.html#http-notification-json
+    """
+
+    JobId: str = dataclasses.field()
+    Status: str = dataclasses.field()
+    API: str = dataclasses.field()
+    JobTag: str = dataclasses.field()
+    Timestamp: int = dataclasses.field()
+    DocumentLocation: TextractDocumentLocation = TextractDocumentLocation.nested_field()

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Amazon Textract Response Object modules
+Amazon Textract Response Object modules.
 
 Reference:
 

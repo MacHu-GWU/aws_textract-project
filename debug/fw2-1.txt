@@ -1,0 +1,72 @@
+a Employee's social security number
+22222
+For Official Use Only
+VOID
+789-12-3456
+OMB No. 1545-0008
+b Employer identification number (EIN)
+1 Wages, tips, other compensation
+2 Federal income tax withheld
+56-7891234
+75,638
+c Employer's name, address, and ZIP code
+3 Social security wages
+4 Social security tax withheld
+Great Flower LLC
+82,911
+5 Medicare wages and tips
+6 Medicare tax withheld
+4264 Red Bud Lane
+82,911
+Hartford, CT 06103
+7 Social security tips
+8 Allocated tips
+d Control number
+9
+10 Dependent care benefits
+e Employee's first name and initial
+Last name
+Suff.
+11 Nonqualified plans
+12a See instructions for box 12
+Jayson
+Stevenson
+d
+e
+13
+Statutory
+Retirement
+Third-party
+12b
+employee
+plan
+sick pay
+C
+8
+e
+3870 Carriage Court
+14 Other
+12c
+C
+Hartford, CT 06745
+e
+12d
+C
+f Employee's address and ZIP code
+15 State Employer's state ID number
+16 State wages, tips, etc.
+17 State income tax
+18 Local wages, tips, etc.
+19 Local income tax
+20 Locality name
+Form
+W-2
+Wage and Tax Statement
+202 4
+Department of the Treasury-Internal - Revenue Service
+For Privacy Act and Paperwork Reduction
+Copy A-For Social Security Administration. Send this entire page with
+Act Notice, see the separate instructions.
+Form W-3 to the Social Security Administration; photocopies are not acceptable.
+Cat. No. 10134D
+Do Not Cut, Fold, or Staple Forms on This Page

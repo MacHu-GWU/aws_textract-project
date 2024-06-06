@@ -9,4 +9,7 @@ from .async_api import JobStatusEnum
 from .async_api import wait_document_analysis_job_to_succeed
 from .async_api import wait_document_text_detection_job_to_succeed
 from .async_api import wait_expense_analysis_job_to_succeed
+from .async_api import wait_lending_analysis_job_to_succeed
 from .async_api import wait_for_lending_analysis_job_to_succeed
+from .async_api import TextractDocumentLocation
+from .async_api import TextractEvent

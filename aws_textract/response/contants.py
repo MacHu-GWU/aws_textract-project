@@ -5,7 +5,10 @@ import enum
 
 class BlockTypeEnum(str, enum.Enum):
     """
-    See https://docs.aws.amazon.com/textract/latest/dg/API_Block.html
+    The value enum for ``response["Blocks"][0]["BlockType"]`` in the textract
+    response object.
+
+    See more details at: https://docs.aws.amazon.com/textract/latest/dg/API_Block.html
     """
 
     PAGE = "PAGE"

@@ -17,6 +17,21 @@ x.y.z (Backlog)
 **Miscellaneous**
 
 
+0.3.1 (2024-06-05)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Features and Improvements**
+
+- Add the following public API:
+    - ``aws_textract.api.better_boto.wait_lending_analysis_job_to_succeed``: an alias of ``wait_for_lending_analysis_job_to_succeed``.
+    - ``aws_textract.api.better_boto.TextractDocumentLocation``
+    - ``aws_textract.api.better_boto.TextractEvent``
+    - ``aws_textract.api.res.get_textract_output_s3dir``
+
+**Minor Improvements**
+
+- More doc strings.
+
+
 0.2.1 (2024-04-21)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Features and Improvements**

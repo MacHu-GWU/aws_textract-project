@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+"""
+Textract response object utility functions.
+"""
+
 import typing as T
 
 from .contants import BlockTypeEnum
@@ -26,6 +30,11 @@ def blocks_to_text(
 def split_blocks_by_page(
     blocks: T.List["BlockTypeDef"],
 ) -> T.Dict[int, T.List["BlockTypeDef"]]:  # pragma: no cover
+    """
+    Split Textract blocks by page.
+
+    :return: A dictionary where the key is the page number and the value is a list of blocks.
+    """
     block_mapper: T.Dict[int, T.List[dict]] = dict()
     for block in blocks:
         page = block["Page"]

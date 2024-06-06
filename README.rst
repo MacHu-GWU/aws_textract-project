@@ -52,7 +52,9 @@ Welcome to ``aws_textract`` Documentation
 ==============================================================================
 .. image:: https://github.com/MacHu-GWU/aws_textract-project/assets/6800411/a0f7b0cb-8241-4dc4-a93a-f0b0bb8cbf3d
 
-See `usage example <./debug/test_async_api.py>`_.
+Amazon Textract SDK for Human.
+
+See `usage example <https://github.com/MacHu-GWU/aws_textract-project/blob/main/debug/test_async_api.py>`_.
 
 
 .. _install:
